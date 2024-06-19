@@ -57,7 +57,7 @@ def sample_func():
 
     subprocess.run(f"mkdir {folder_name}_created_by_{username['username']}", shell=True)
 
-@app.command("chi")
+@app.command("test")
 def sample_func():
     rprint("[red bold]Hello[/red bold] [yellow]World[yello]")
 
