@@ -27,10 +27,10 @@ def sample_func():
                             'name': 'Weather',
                         },
                         {
-                            'name': 'Hughie',
+                            'name': 'Hurricanes',
                         },
                         {
-                            'name': 'Predictions',
+                            'name': 'Ask questions >>>',
                         },
                         {
                             'name': 'Exit',
@@ -43,8 +43,14 @@ def sample_func():
     username = prompt(module_list_question)
 
     if username['username'].__eq__("Weather"):
-        state = input()
-        print(state)
+        city = input()
+        print(city)
+    
+    if username['username'].__eq__("Hurricanes"):
+        return
+
+    if username['username'].__eq__("Ask questions >>>"):
+        return
 
     if username['username'].__eq__("Exit"):
         exit()
