@@ -6,9 +6,8 @@ from rich import print as rprint
 from art import *
 from rich.console import Console
 from rich.panel import Panel
-from Weather import weatherRun
+from Weather import *
 from Hurricanes import hurricaneRun
-from ChatGPT import chatRun
 
 exitApp = False
 
@@ -17,28 +16,32 @@ app = typer.Typer()
 console = Console()
 
 mih = text2art("\n\n\n\nWEATHER.io", font="alligator3")
-console.print(mih, style="blue")
-rprint(Panel.fit("[bold yellow]Creator: Nigel Smith                             ", style="bold yellow"))
 
 
 def Menu(city):
-    if city.lower() == "back":                     ### Line 21 when executed, goes back to the main menu
+    if city.lower() == "menu":                     ### Line 21 when executed, checks to see if user typed 'back'. If true then the app goes back to the main menu
         app()
 
+#hi = rprint("[green bold]Select any one operation:[green bold]")
 
 @app.command("tools")
 def sample_func():
+    console.print(mih, style="blue")
+    rprint(Panel.fit("[bold yellow]Creator: Nigel Smith                             ", style="bold yellow"))
+    rprint("[green bold]Select any one operation:[green bold]")
+    dots = rprint("[yellow]====================================================[yello]")
+
     module_list_question = questions = [
         {
             'type': 'list',
             'name': 'username',
-            'message': 'Select any one operation: ',
+            'message': '            ',
             'choices': [
                         {
                             'name': 'Weather',
                         },
                         {
-                            'name': 'Hurricanes',
+                            'name': 'Hurricanes', 
                         },
                         {
                             'name': 'Ask questions >>>',
@@ -53,17 +56,20 @@ def sample_func():
 
     username = prompt(module_list_question)
 
+    #This section evalutes the option that the user chose
 
     city = ""
     if username['username'].__eq__("Weather"):
-        print("Enter city: ", end='')
+        rprint("[yellow bold]Enter city[yellow bold]" + "[red](Type \"MENU\" to return home[red]): ", end='')
         city = input()
         if city == "":
             return print(f"{ValueError} Somethings wrong... try again"), time.sleep(3), app()
+        url_Func(city)
 
-        Menu(city)                                                      #Back to the main menu
-        print(city)
-        weatherRun(city)
+        #Back to the main menu
+        Menu(city)
+        
+        ##weatherRun()
     
     if username['username'].__eq__("Hurricanes"):
         hurricaneRun()
@@ -76,8 +82,7 @@ def sample_func():
 
         
 
-rprint("[yellow]=============================================[yello]")
-rprint("[green bold]Enter folder name :[green bold]")
+#rprint("[green bold]Enter folder name :[green bold]")
     #folder_name = input()
 
 
